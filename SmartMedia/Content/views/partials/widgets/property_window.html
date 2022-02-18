@@ -1,0 +1,122 @@
+<div jq-dialog title="Property" position="right center" auto-open="false" width="340" id="dlgProperty" minimizable="true">
+    <div>
+        <h5>{{item.type}}</h5>
+        <div class="panel-body" ng-show="showItemProperties();">
+            <div class="input-group" ng-show="showItemProperty('left');">
+                <span class="input-group-addon property_lebel">Left</span>
+                <input type="number" prop class="form-control" ng-model="item.left" />&nbsp;px
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon property_lebel">Top</span>
+                <input type="number" prop class="form-control" ng-model="item.top" />&nbsp;px
+            </div>
+            <div class="input-group" ng-show="showItemProperty('width');">
+                <span class="input-group-addon property_lebel">Width</span>
+                <input type="number" prop class="form-control" ng-model="item.width" />&nbsp;px
+            </div>
+            <div class="input-group" ng-show="showItemProperty('height')">
+                <span class="input-group-addon property_lebel">Height</span>
+                <input type="number" prop class="form-control" ng-model="item.height" />&nbsp;px
+            </div>
+            <div class="input-group" ng-show="showItemProperty('src')">
+                <span class="input-group-addon property_lebel">Source</span>
+                <input type="text" prop class="form-control" ng-model="item.src" /><span ng-click="browseSource();"
+                                                                                         style="vertical-align:bottom;font-size:13pt;cursor:pointer;font-weight:bold">....</span>
+            </div>
+            <div class="input-group" ng-show="showItemProperty('text')">
+                <span class="input-group-addon property_lebel">Text</span>
+                <input type="text" prop class="form-control" ng-model="item.text" title="{{item.text}}" ng-disabled="true" /><span ng-click="setRichText();"
+                                                                                                                                   style="vertical-align:bottom;font-size:13pt;cursor:pointer;font-weight:bold">....</span>
+            </div>
+            <div class="input-group" ng-show="showItemProperty('bgColor')">
+                <span class="input-group-addon property_lebel">Background</span>
+                <input type="text" prop colorpicker="hex" class="form-control" ng-model="item.bgColor" />
+            </div>
+            <div class="input-group" ng-show="showItemProperty('fontName')">
+                <span class="input-group-addon property_lebel">Font</span>
+                <input type="text" prop class="form-control" ng-model="item.fontName" />
+            </div>
+            <div class="input-group" ng-show="showItemProperty('fontSize')">
+                <span class="input-group-addon property_lebel">Font Size</span>
+                <input type="number" prop class="form-control" ng-model="item.fontSize" prop />&nbsp;pt
+            </div>
+            <div class="input-group" ng-show="showItemProperty('fontColor')">
+                <span class="input-group-addon property_lebel">Font color</span>
+                <input type="text" prop class="form-control" colorpicker="hex" ng-model="item.fontColor" />
+            </div>
+            <div class="input-group" ng-show="showItemProperty('slideInterval')">
+                <span class="input-group-addon property_lebel">Slide after</span>
+                <input type="number" prop class="form-control" ng-model="item.slideInterval" prop />&nbsp;sec
+            </div>
+            <div class="input-group" ng-show="showItemProperty('refreshInterval')">
+                <span class="input-group-addon property_lebel">Refresh after</span>
+                <input type="number" prop class="form-control" ng-model="item.refreshInterval" />&nbsp;sec
+            </div>
+            <div class="input-group" ng-show="showItemProperty('startEffect')">
+                <span class="input-group-addon property_lebel">Start Effect</span>
+                <select prop class="form-control" ng-model="item.startEffect" ng-options="animation for animation in animations">
+                    <option value="">Select An Effect</option>
+                </select>
+
+            </div>
+            <div class="input-group" ng-show="showItemProperty('startEffectDuration')">
+                <span class="input-group-addon property_lebel">Duration</span>
+                <time-span ng-model="item.startEffectDuration"></time-span>
+            </div>
+            <div class="input-group" ng-show="showItemProperty('endEffect')">
+                <span class="input-group-addon property_lebel">End Effect</span>
+                <select prop class="form-control" ng-model="item.endEffect" ng-options="animation for animation in animations">
+                    <option value="">Select An Effect</option>
+                </select>
+            </div>
+            <div class="input-group" ng-show="showItemProperty('endEffectDuration')">
+                <span class="input-group-addon property_lebel">Duration</span>
+                <time-span ng-model="item.endEffectDuration"></time-span>
+            </div>
+            <div class="input-group" ng-show="showItemProperty('slideTime')">
+                <span class="input-group-addon property_lebel">Slide Duration</span>
+                <input type="number" prop class="form-control" ng-model="item.slideTime" />&nbsp;sec
+            </div>
+        </div>
+        <expander class='expander' title="Page" style="margin-left:10px">
+            <div class="panel-body">
+                <input type="radio" ng-model="page.bgType" value='color' prop>Background Color<br>
+                <div class="input-group" ng-show="page.bgType == 'color'">
+                    <span class="input-group-addon property_lebel">Background</span>
+                    <input type="text" prop colorpicker="hex" class="form-control" ng-model="page.bgColor" />
+                </div>
+                <input type="radio" ng-model="page.bgType" value='image'>Background Image <br>
+                <div class="input-group" ng-show="page.bgType == 'image'">
+                    <span class="input-group-addon property_lebel">Background</span>
+                    <input type="text" prop class="form-control" ng-model="page.bgImageSrc" />
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon property_lebel">Duration</span>
+                    <time-span ng-model='page.duration'></time-span>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon property_lebel">Start Effect</span>
+                    <select prop class="form-control" ng-model="page.startEffect" ng-options="animation for animation in animations">
+                        <option value="">Select An Effect</option>
+                    </select>
+
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon property_lebel">Duration</span>
+                    <time-span ng-model="page.startEffectDuration"></time-span>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon property_lebel">End Effect</span>
+                    <select prop class="form-control" ng-model="page.endEffect" ng-options="animation for animation in animations">
+                        <option value="">Select An Effect</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon property_lebel">Duration</span>
+                    <time-span ng-model="page.endEffectDuration"></time-span>
+                </div>
+
+            </div>
+        </expander>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div jq-dialog title="Tools" position="left center" width="140" height="500" auto-open="false" hideclosebutton="false" id="dlgTools" minimizable="true">
+    <table>
+        <tr>
+            <td>
+                <div class="dropdown">
+                    <div class="dropdown-toggle tool-icon tool-video" data-toggle="dropdown"></div>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#" ng-click="addVideo('youtube');">Youtube</a>
+                        </li>
+                        <li>
+                            <a href="#" ng-click="addVideo('dailymotion');">Dailymotion</a>
+                        </li>
+                        <li>
+                            <a href="#" ng-click="addVideo('others');">Vimo</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <div class='tool-icon tool-ticker' ng-click='addTicker();'
+                     title='Add Ticker'></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class='tool-icon tool-text' ng-click='addText();'
+                     title="Add Text"></div>
+            </td>
+            <td>
+                <div class='tool-icon tool-photo' ng-click='addImage();'
+                     title='Add Photo'></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class='tool-icon tool-rss' ng-click='addRssFeed();'
+                     title="Add Rss Feed"></div>
+            </td>
+            <td>
+                <!--<div class='tool-icon tool-photo' ng-click='addImage();'
+                     title='Add Photo'></div>-->
+            </td>
+        </tr>
+    </table>
+</div>

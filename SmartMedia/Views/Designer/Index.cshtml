@@ -1,0 +1,115 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html ng-app="mediaDesigner" ng-controller="PresentationController">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Smart Media Designer</title>
+
+    @Styles.Render("~/Content/siteCss")
+    @Styles.Render("~/Content/designerCss")
+
+    <link href="~/Content/jquery-te-1.4.0.css" rel="stylesheet" />
+    <link href="~/Content/ui-grid.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/designer")
+    <script src="~/Scripts/angular-ui/ui-grid.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-te-1.4.0.js"></script>
+    <script src="~/Scripts/designer/js/shared/module/smart_media.js"></script>
+
+    
+
+    @*<script src="~/Scripts/designer/js/lib/bootstrap-wysiwyg.js"></script>*@
+
+    <style>
+        .navbar {
+            border: 1px solid transparent !important;
+            position: relative !important;
+        }
+
+
+        .girdTitle {
+            /*background: radial-gradient(white, #77B800);*/
+            background-color: #808080;
+            color: white;
+            height: 25px;
+            vertical-align: middle;
+            line-height: 25px;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-weight: bold;
+            width: inherit;
+        }
+
+        .ui-grid-row-selected {
+            background-color: #e9000d !important;
+            font-weight: bold;
+            color: white;
+        }
+
+            .ui-grid-row-selected > div.ui-grid-cell {
+                background-color: #e9000d !important;
+            }
+    </style>
+
+</head>
+<body style="background-color:lightgray;">
+
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+        }
+    }
+
+
+
+    <div ng-include="loadNavbar();"></div>
+    <div id="dlgPresentationSettinsg" title="Presentation settings" jq-dialog width="300" auto-open="false" position="center center" ok="savePresentationSettings();" closable="true">
+        <div ng-include="loadWidget('presentation_settings');"></div>
+    </div>
+    <div ng-include="loadWidget('property');"></div>
+    <div ng-include="loadWidget('tools');"></div>
+    <div style="width:100%;height:100%;overflow:auto" id="mainContainer">
+        <div id="dsgnrContainer" ng-click='clickBody();' style="width:{{presentation.width}}px;height:{{presentation.height}}px;margin-left:auto;margin-right:auto;top:29px;position:absolute;border:1px solid black;">
+            <div ng-repeat="item in presentation.tickers">
+                <div ng-include="loadPartial(item);"></div>
+            </div>
+            <div ng-repeat="item in page.images">
+                <div ng-include="loadPartial(item);" onload="itemLoaded(this);"></div>
+            </div>
+            <div ng-repeat="item in page.texts">
+                <div ng-include="loadPartial(item);" onload="itemLoaded(this);"></div>
+            </div>
+            <div ng-repeat="item in page.videos">
+                <div ng-include="loadPartial(item);" onload="itemLoaded(this);"></div>
+            </div>
+            <div ng-repeat="item in page.feeds">
+                <div ng-include="loadPartial(item);" onload="itemLoaded(this);"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="dlgNewPresentation" title="Create new presentation" jq-dialog width="300" auto-open="false" position="center center" ok="createNewPresentation();" cancel="cancelNewPresentation();" closable="true">
+        <div ng-include="loadWidget('presentation_settings');"></div>
+    </div>
+    <div id="dlgOpenPresentation" title="Open presentation" jq-dialog width="500" auto-open="false" position="center center" ok="openPresentation();" closable="true">
+        <div ng-include="loadWidget('open_presentations');"></div>
+    </div>
+    <div id="dlgTxtEditor" modal="true" title="Edit Rich Text" jq-dialog width="750" height="580" auto-open="false" position="center center" ok="updateRichText();" cancel="cancelRichTextEditor();">
+        <div ng-include="loadWidget('edit_text');"></div>
+    </div>
+
+    <div id="dlgVideoSerach" modal="true" title="Search videos" jq-dialog width="520" height="450" auto-open="false" position="center center" ok="updateRichText();" closable="true" minimizable="true">
+        <div ng-include="loadWidget('video_browser');"></div>
+    </div>
+    <iframe id="frmPreview" style="width:100%;height:100%;display:none" allowfullscreen="true" />
+
+</body>
+</html>

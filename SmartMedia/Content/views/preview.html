@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Presentation Preview</title>
+
+    <link href="../player.css" rel="stylesheet" />
+    <link href="../animate.css" rel="stylesheet" />
+    <script src="../../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../../Scripts/angular.min.js"></script>
+    <script src="../../Scripts/angular-sanitize.min.js"></script>
+    <script src="../../Scripts/designer/js/lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="../../Scripts/designer/js/lib/mootools-core-1.4.5-full-nocompat-yc.js"></script>
+    <script src="../../Scripts/designer/js/shared/model/model.js"></script>
+    
+    <script src="../../Scripts/designer/js/modules/player.js"></script>
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+</head>
+<body ng-app="mediaPlayer" ng-controller="PlayerController" ng-init="init();" style="background-color:black">
+
+    <div id="playerContainer" style="width:{{presentation.width}}px;height:{{presentation.height}}px;position:absolute;top:0px;left:0px;">
+        <div ng-repeat="item in presentation.tickers">
+            <div ng-include="loadPartial(item);"></div>
+        </div>
+        <div ng-repeat="item in page.images">
+            <div ng-include="loadPartial(item);" onload="itemLoaded(this);"></div>
+        </div>
+        <div ng-repeat="item in page.texts">
+            <div ng-include="loadPartial(item);" onload="itemLoaded(this);"></div>
+        </div>
+        <div ng-repeat="item in page.videos">
+            <div ng-include="loadPartial(item);"></div>
+        </div>
+        <div ng-repeat="item in page.feeds">
+            <div ng-include="loadPartial(item);"></div>
+        </div>
+    </div>
+</body>
+</html>

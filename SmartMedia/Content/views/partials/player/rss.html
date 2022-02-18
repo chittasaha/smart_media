@@ -1,0 +1,9 @@
+<div style="width:{{item.width}}px;height:{{item.height}}px;position:absolute;left:{{item.left}}px;top:{{item.top}}px;background-color:{{item.bgColor}};
+	overflow:hidden;font-family:{{item.fontName}};font-size:{{item.fontSize}}pt;border:2px solid gray;border-radius:4px;color:{{item.fontColor}};" after-render="itemLoaded();" id="{{item.uid}}">
+	<div ng-repeat="feed in item.items" style="height:inherit">
+		<div style="height:inherit;float:left">
+			<div ng-hide="feed.image == ''" style="width:30%;float:left;height:inherit;background-image:url('{{feed.image}}');background-size:cover"></div>
+			<div class="feed-item">{{feed.description}}</div>
+		</div>
+	</div>
+</div>

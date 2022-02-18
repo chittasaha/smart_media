@@ -1,0 +1,49 @@
+<div>    
+    <nav class="navbar navbar-default" role="navigation" style="min-height:25px;background-color:#808080;color:white">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" ng-click="showCreateNewPresentation();" ng-disabled="presentation">New</a></li>
+                    <li><a href="#" ng-click="openPresentations();" ng-disabled="presentation">Open</a></li>
+                    <li><a href="#" ng-click="savePresentation();" ng-disabled="!presentation">Save</a></li>
+                    <!-- <li class="divider"></li> -->
+                    <li><a href="#" ng-disabled="!presentation">Save as template</a></li>                   
+                    <li class="divider"></li>
+                    <li><a href="#" ng-click="closePresentation();" ng-disabled="!presentation">Close Presentation</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Window<b class="caret"></b></a>                
+                <ul class="dropdown-menu">
+                    <li><a href="#" ng-disabled="!presentation">Media Library</a></li>
+                    <!--<li><a href="#">Upload Video</a></li>
+                    <li><a href="#">Upload Photo</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Some operation</a></li>-->
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" ng-click="openPresentationSettings();" ng-disabled="!presentation">Presentation Settings</a></li>
+                    <li><a href="#">Editor Settings</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#" ng-click="Logout();">Logout</a></li>
+                </ul>
+            </li>
+            <li class="button">
+                <a href="#" ng-click="addPage();" title="Add Page" ng-disabled="!presentation"><img alt="" style='width:20px;height:20px' src="../content/img/add.png"></a>
+            </li>
+            <li>
+                <a href="#" ng-click="goPrev();" title="Go to previous page " ng-disabled="!presentation"><img alt="" style='width:20px;height:20px' src="../content/img/prev.png"></a>
+            </li>
+            <li>
+                <a href="#" ng-click="goNext();" title="Go to next page" ng-disabled="!presentation"><img alt="" style='width:20px;height:20px' src="../content/img/next.png"></a>
+            </li>
+            <li>
+                <a href="#" ng-click="preview();" title="Preview the page" ng-disabled="!presentation"><img alt="" style='width:20px;height:20px' src="../content/img/preview.png"></a>
+            </li>
+        </ul>
+    </nav>
+</div>

@@ -1,0 +1,182 @@
+﻿@{
+    if (!User.IsInRole("SuperAdmin")) { 
+        
+        @Html.Hidden("hidOrgId", (HttpContext.Current.Cache["Organization"] as SmartMedia.Core.Models.Organization).Id.ToString());
+        @Html.Hidden("hidOrgName", (HttpContext.Current.Cache["Organization"] as SmartMedia.Core.Models.Organization).Name.ToString());
+    }
+    @Html.Hidden("hidIsAdminRole", User.IsInRole("Admin").ToString());
+
+
+}
+
+
+<style>
+    .gridStyle {
+        border: 1px solid #77B800;
+        height: 300px;
+        width: inherit;
+    }
+
+    .girdTitle {
+        /*background: radial-gradient(white, #77B800);*/
+        background-color: #808080;
+        color: white;
+        height: 25px;
+        vertical-align: middle;
+        line-height: 25px;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-weight: bold;
+        width: inherit;
+    }
+
+    .tDialog input[type=text], select, input[type=password] {
+        width: 150px;
+    }
+
+    .tDialog table td {
+        padding-bottom: 3px;
+    }
+    /*.tDialog input[type=password] {
+        width: 150px;
+    }*/
+</style>
+   
+<button onclick="javascript: LogOut();" value="LogOut" class="btn btn-info" style="float:right">Logout</button>
+<div ng-app="appAdmin" ng-controller="adminController" style="font-size:8.5pt;width:100%">
+    <table style="width:45%;">
+        @{
+
+            if (User.IsInRole("SuperAdmin"))
+            {
+                <tr>
+                    <td style="width:inherit;padding-left:10px;">
+                        <div class="girdTitle">
+                            <span>Organizations</span>
+                            <span style="float:right;">
+                                <a href="#" ng-click="addOrganization()">
+                                    <img src="~/images/Plus.png" />
+                                </a>
+                                <a href="#" ng-click="editOrganization()">
+                                    <img src="~/images/write.png" />
+                                </a>
+                                <a href="#" ng-click="removeOrganization()">
+                                    <img src="~/images/Minus.png" />
+                                </a>
+                            </span>
+                        </div>
+                        <div class="gridStyle" ng-grid="orgGridOptions"></div>
+                    </td>
+                </tr>
+            }
+        }             
+        <tr>
+            <td style="width:inherit;padding-left:10px;padding-top:10px;">
+                <div class="girdTitle">
+                    <span>Users from {{selectedOrgnizations[0].Name}}</span>
+                    <span style="float:right;">
+                        <a href="#">
+                            <img ng-click="addUser();" src="~/images/Plus.png" />
+                        </a>
+                        <a href="#" ng-click="removeUser()">
+                            <img src="~/images/Minus.png" />
+                        </a>
+                    </span>
+                </div>
+                <div class="gridStyle" ng-grid="usrGridOptions"></div>
+            </td>
+        </tr>
+    </table> 
+
+    <div id="OrgDialog" jq-dialog width="350" auto-open="false" modal="true" class="tDialog">
+        <table ng-show="createOrg == true || editOrg == true">
+            <tr>
+                <td class="tdLeft">Name</td>
+                <td class="tdRight"><input type="text" ng-model="org.Name" /></td>
+            </tr>
+            <tr>
+                <td class="tdLeft">Address</td>
+                <td class="tdRight"><input type="text" ng-model="org.Address" /></td>
+            </tr>
+            <tr>
+                <td class="tdLeft">Total Designer</td>
+                <td class="tdRight"><input type="number" ng-model="org.TotalInstanceOfDesigner" /></td>
+            </tr>
+            <tr>
+                <td class="tdLeft">Total Players</td>
+                <td class="tdRight">
+                    <input type="number" ng-model="org.TotalPlayerInstance" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdLeft">Phone</td>
+                <td class="tdRight">
+                    <input type="text" ng-model="org.Phone" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdLeft">Remark</td>
+                <td class="tdRight">
+                    <textarea  ng-model="org.Remark" ></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdLeft"></td>
+                <td class="tdRight" style="margin-top:10px;">
+                    <input type="button" value="Save" ng-click="saveOrg();" />
+                    <input type="button" value="Cancel" ng-click="cancelAddUser();" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="UserDialog" jq-dialog width="350" auto-open="false" modal="true" title="Create User" class="tDialog">
+        <table ng-show="createUser == true">
+            <tr>
+                <td class="tdLeft">Name</td>
+                <td class="tdRight"><input type="text" ng-model="user.Name" /></td>
+            </tr>
+            <tr>
+                <td class="tdLeft">Id/Email</td>
+                <td class="tdRight"><input type="text" ng-model="user.UserId" /></td>
+            </tr>
+            <tr>
+                <td class="tdLeft">Password</td>
+                <td class="tdRight"><input type="password" ng-model="user.Password" /></td>
+            </tr>
+            <tr>
+                <td class="tdLeft">Role</td>
+                <td class="tdRight">
+                    <select ng-model="user.Role" ng-options="role for role in roles">
+                        <option value="">--Select a role--</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdLeft"></td>
+                <td class="tdRight" style="padding-top:10px;float:right">
+                    <input type="button" value="Save" ng-click="saveUser();" />
+                    <input type="button" value="Cancel" ng-click="cancelAddUser();" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<div>
+    
+    <div class="gridStyle" ng-grid="openPresentationGridOptions"></div>
+    
+    <!--<div ng-repeat="pr in existingPresentations">
+        <span>{{pr.Name}}</span> <span>{{pr.CreatedDate}}</span>
+    </div>-->
+</div>
+<link href="~/Content/ng-grid.css" rel="stylesheet" />
+<link href="~/Content/admin.css" rel="stylesheet" />
+<script src="~/Scripts/admin/app.js"></script>
+<script src="~/Scripts/admin/services.js"></script>
+<script src="~/Scripts/admin/controller.js"></script>
+<script src="~/Scripts/admin/directives.js"></script>
+<script src="~/Scripts/admin/model.js"></script>
+<script src="~/Scripts/angular-ui/ng-grid.js"></script>
+

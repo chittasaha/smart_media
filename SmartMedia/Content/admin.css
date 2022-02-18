@@ -1,0 +1,32 @@
+﻿.tDialog  table{
+    width: 100%
+}
+
+
+.tdLeft {
+    font-weight :bold;
+    width : 40%;
+}
+
+.tdRight {
+    width : 60%;
+}
+
+.ui-dialog table input[type=text], input[type=number], input[type=password], select {
+    margin-left:10px;
+    width : 200px;
+}
+.ui-dialog table textarea {
+    margin-left:10px;
+    width : 200px;
+}
+
+.adminHeader {
+    width: 100%;
+    height : 70px;
+    background-color:gray;
+}
+
+a[disabled] {
+    pointer-events: none;
+}

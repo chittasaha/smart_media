@@ -1,0 +1,16 @@
+﻿<div style="width:500px">
+    <div>
+        <!--<h5>Search on {{videoSearchResult.provider}}</h5>-->
+        <input type="text" ng-model="videoSearchResult.searchToken" ng-keydown="searchVideoOnEnter(videoSearchResult.provider);" style="width:350px" />
+        <a href="#" ng-click="searchVideo(videoSearchResult.provider);">Search</a>
+    </div>
+    <div style="min-height:300px;width:auto;">
+        <ul style="float:left;overflow-y:auto;height:inherit">
+            <li ng-repeat="item in videoSearchResult.items" style="float:left;margin:4px; width:{{item.thumbnailWidth + 2}}px;height:{{item.thumbnailHeight + 2}}px">
+                <a ng-click="selectVideoItem()">
+                    <img style="width:{{item.thumbnailWidth}}px;height:{{item.thumbnailHeight}}px" src="{{item.thumbnailSrc}}" />
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

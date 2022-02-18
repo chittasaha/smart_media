@@ -1,0 +1,206 @@
+.property_window {
+    position:absolute;top:65px;left:80%;width:300px; border:1px solid gray;padding:5px;
+    background: -webkit-linear-gradient(gray, white); /* For Safari */
+    background: -o-linear-gradient(gray, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(gray, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(gray, white); /* Standard syntax (must be last) */
+
+}
+.property_lebel {
+    width:115px;
+    min-height:25px;
+    max-height:25px;
+    font-size:11px !important;
+    font-weight : bold !important;
+}
+.tool-icon {
+    background-color:#EDEDED;
+    background-repeat:no-repeat;
+	background-position:center;	
+	width:40px;
+	height:40px;	
+	border: 1px solid lightblue;
+	border-radius:4px;
+	margin:7px;
+	cursor: pointer;	 
+}
+input.form-control{
+	height:25px;
+}
+select.form-control{
+	width : 150px !important;
+    height:30px;
+}
+.tool-text{
+	background-image: url(../content/img/text.png);	
+}
+.tool-video{
+	background-image: url(../content/img/video.png);	
+}
+.tool-ticker{
+	background-image: url(../content/img/ticker.png);	
+}
+.tool-photo{
+	background-image: url(../content/img/photo.png);	
+}
+.tool-rss{
+	background-image: url(../content/img/rss.png);
+}
+.ticker {    
+    width:inherit;
+    height:inherit;
+    vertical-align:middle;
+    display: table-cell;
+    transform: translate3d(0, 0, 0);
+    animation: ticker linear 20s infinite;
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-animation: ticker linear 20s infinite;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+    padding: 4px;
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;    
+	
+}
+/*.selected{
+	border:2px solid black;
+}*/
+
+@keyframes ticker{
+	0% { text-indent: 100%;}
+    25% { text-indent: 25%;}
+	50% { text-indent: -50%;}
+	75% { text-indent: -125%;}
+	100% { text-indent: -200%; }
+}
+
+@-webkit-keyframes ticker{
+    0% { text-indent: 100%;}
+    25% { text-indent: 25%;}
+	50% { text-indent: -50%;}
+	75% { text-indent: -125%;}
+	100% { text-indent: -200%; }
+}
+.input-group input{
+	max-width:150px;
+}
+.time-spin{
+	
+	/*border-radius : 0px;
+	border-top:1px solid #CCCCCC;
+	border-bottom:1px solid #CCCCCC;
+	border-right:1px solid #CCCCCC;*/
+    float:left;
+}
+.time-spin input{
+	max-width:50px;
+	border-left:1px solid #CCCCCC;
+	border-right:1px solid #CCCCCC;
+	border-top: 1px solid #CCCCCC;
+	border-bottom:1px solid #CCCCCC;
+	border-radius : 0;
+	padding: 0;
+	text-align:center;
+	
+}
+.expander {	
+	width: 100%;
+}
+.expander > .title {	
+	background-color: #CCCCCC;
+    border: 1px solid #ADD8E6;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    height: 26px;
+    margin: 10px -5px;
+    text-align: center;
+    width: 100px;
+}
+.expander > .body {
+	padding: .1em .3em;
+}
+.panel-body > .input-group{
+	margin-top: 5px;
+}
+ul
+{
+    list-style-type: none;
+}
+div.modal-content {
+    width:900px;
+}
+
+ul li a img:hover {
+    border:1px solid red;
+}
+
+ul li.selected{
+    border:1px solid red;
+}
+
+.navbar-nav > li > a {
+    padding-bottom: 1px;
+    padding-top: 1px;
+}
+.navbar-nav > li > a {
+    line-height: 15px;    
+}
+.textEditor{
+	width:500px;
+	height:350px;
+}
+.media_text{
+    overflow:auto;
+    padding:4px;
+}
+
+nav ul{
+    background-color:#808080 !important;
+}
+
+ul li a:hover{
+    background-color:#e9000d !important;
+}
+
+nav ul li a{
+    color:white !important;
+    height : 25px !important;
+}
+
+.media_button {
+    background-color:#e9000d !important;
+    color:white !important;
+    width: 50px;
+    height : 20px;
+    border:none;
+}
+.navbar {
+    border-radius:0px !important;
+}
+.navbar-nav > li {
+    margin-top:2px;
+}
+
+.ui-dialog-titlebar a {
+    text-decoration : none;
+}
+.ui-dialog-titlebar a:hover {
+    color:#e9000d !important;
+}
+.dialog_title_link  {
+    float: right;
+    padding-right: 10px;
+    color: white !important;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+ 
+}
